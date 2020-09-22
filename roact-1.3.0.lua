@@ -45,35 +45,32 @@ function installRoact()
     print("TEST")
 
     local f = workspace:FindFirstChild("RobloxPKG")
-    
-    if (f) then
-        print("Downloading & installing Roact.")
+    print("Downloading & installing Roact.")
 
-        local main = httpService:GetAsync("https://raw.githubusercontent.com/Roblox/roact/v1.3.0/src/init.lua")
-        local module = Instance.new("ModuleScript")
-        module.Name = "Roact"
-        module.Source = main
-        
-        -- Download the rest of the files.
-        local function installFiles(parent, tbl)
-            for i, v in pairs(tbl) do
-                if (typeof(v) == "table") then
-                    local x = Instance.new("Folder")
-                    x.Name = i
-                    x.Parent = parent
-                    installFiles(x, v)
-                else
-                    local mod = Instance.new("ModuleScript")
-                    mod.Source = https:GetAsync(v)
-                    mod.Parent = parent
-                end
+    local main = httpService:GetAsync("https://raw.githubusercontent.com/Roblox/roact/v1.3.0/src/init.lua")
+    local module = Instance.new("ModuleScript")
+    module.Name = "Roact"
+    module.Source = main
+    
+    -- Download the rest of the files.
+    local function installFiles(parent, tbl)
+        for i, v in pairs(tbl) do
+            if (typeof(v) == "table") then
+                local x = Instance.new("Folder")
+                x.Name = i
+                x.Parent = parent
+                installFiles(x, v)
+            else
+                local mod = Instance.new("ModuleScript")
+                mod.Source = https:GetAsync(v)
+                mod.Parent = parent
             end
         end
-
-        installFiles(module, files)
-
-        module.Parent = f
     end
+
+    installFiles(module, files)
+
+    module.Parent = f
 end
 
 installRoact()
