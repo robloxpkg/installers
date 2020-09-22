@@ -42,6 +42,8 @@ local files = {
 }
 
 function installRoact()
+    print("TEST")
+
     local f = workspace:FindFirstChild("RobloxPKG")
     
     if (f) then
