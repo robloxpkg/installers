@@ -66,7 +66,7 @@ function installRoact()
                 else
                     local m = Instance.new("ModuleScript")
                     m.Name = i
-                    m.Source = https:GetAsync(v)
+                    m.Source = httpService:GetAsync(v)
                     m.Parent = parent
                 end
             end
