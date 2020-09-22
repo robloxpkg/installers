@@ -1,6 +1,8 @@
 local httpService = game:GetService("HttpService")
 local workspace = game:GetService("Workspace")
 
+print("TEST2")
+
 local files = {
     PropMarkers = {
         Change = "https://raw.githubusercontent.com/Roblox/roact/v1.3.0/src/PropMarkers/Change.lua",
